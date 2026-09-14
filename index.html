@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Stopwatch & Timer</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links" id="nav-links-list">
+                <li><a href="#" class="nav-item active" id="nav-home">Home</a></li>
+                <li><a href="#" class="nav-item" id="nav-about">About</a></li>
+                <!-- Sliding line indicator under navbar links -->
+                <div class="nav-indicator" id="nav-indicator"></div>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Wrapper -->
+    <main class="main-wrapper fade-in-page" id="main-wrapper">
+        
+        <!-- App Title and Mode Switcher -->
+        <header class="app-header">
+            <h1 class="app-title">Digital Stopwatch & Timer</h1>
+            
+            <div class="mode-tabs" id="mode-tabs-container">
+                <button class="tab-btn active" id="tab-stopwatch">Stopwatch</button>
+                <button class="tab-btn" id="tab-timer">Timer</button>
+                <!-- Sliding line indicator under tabs -->
+                <div class="tab-indicator" id="tab-indicator"></div>
+            </div>
+        </header>
+
+        <!-- Stopwatch Mode Section -->
+        <section class="mode-content active" id="stopwatch-section">
+            
+            <!-- Main Time Display Card (Glow border triggers on hover) -->
+            <div class="glow-card display-card">
+                <div class="time-display" id="stopwatch-display">
+                    00:00:00.00
+                </div>
+            </div>
+
+            <!-- Action Buttons: Start, Lap, Reset -->
+            <div class="controls-container">
+                
+                <!-- Start / Pause Button -->
+                <div class="btn-group">
+                    <button class="action-btn btn-start" id="sw-start-btn" title="Start Timer">
+                        <svg class="btn-icon icon-play" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg class="btn-icon icon-pause d-none" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <span class="btn-label" id="sw-start-label">Start</span>
+                </div>
+
+                <!-- Lap Button -->
+                <div class="btn-group">
+                    <button class="action-btn btn-lap" id="sw-lap-btn" title="Record Lap" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+                        </svg>
+                    </button>
+                    <span class="btn-label">Lap</span>
+                </div>
+
+                <!-- Reset Button -->
+                <div class="btn-group">
+                    <button class="action-btn btn-reset" id="sw-reset-btn" title="Reset Stopwatch" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                        </svg>
+                    </button>
+                    <span class="btn-label">Reset</span>
+                </div>
+
+            </div>
+
+            <!-- Lap Times Panel -->
+            <div class="glow-card laps-card" id="laps-container">
+                <div class="laps-header">
+                    <h2 class="laps-title">Lap Times</h2>
+                    <button class="clear-laps-btn" id="clear-laps-btn">Clear Laps</button>
+                </div>
+                
+                <ul class="laps-list" id="laps-list">
+                    <li class="empty-laps-msg">No laps recorded yet.</li>
+                </ul>
+            </div>
+
+        </section>
+
+        <!-- Countdown Timer Section -->
+        <section class="mode-content" id="timer-section">
+            
+            <div class="glow-card display-card">
+                <div class="time-display" id="timer-display">
+                    00:05:00.00
+                </div>
+            </div>
+
+            <!-- Inputs for Hours, Minutes, Seconds -->
+            <div class="timer-inputs-container" id="timer-inputs">
+                <div class="input-group">
+                    <input type="number" id="timer-hours" min="0" max="99" value="00" placeholder="00">
+                    <label for="timer-hours">Hours</label>
+                </div>
+                <span class="input-colon">:</span>
+                <div class="input-group">
+                    <input type="number" id="timer-minutes" min="0" max="59" value="05" placeholder="00">
+                    <label for="timer-minutes">Minutes</label>
+                </div>
+                <span class="input-colon">:</span>
+                <div class="input-group">
+                    <input type="number" id="timer-seconds" min="0" max="59" value="00" placeholder="00">
+                    <label for="timer-seconds">Seconds</label>
+                </div>
+            </div>
+
+            <!-- Timer Action Buttons -->
+            <div class="controls-container">
+                <div class="btn-group">
+                    <button class="action-btn btn-start" id="tm-start-btn" title="Start Countdown">
+                        <svg class="btn-icon icon-play" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <svg class="btn-icon icon-pause d-none" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        </svg>
+                    </button>
+                    <span class="btn-label" id="tm-start-label">Start</span>
+                </div>
+
+                <div class="btn-group">
+                    <button class="action-btn btn-reset" id="tm-reset-btn" title="Reset Countdown">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                        </svg>
+                    </button>
+                    <span class="btn-label">Reset</span>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- About Modal with smooth fade transition -->
+    <div class="modal-overlay" id="about-modal">
+        <div class="modal-card glow-card">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <h2 class="modal-title">About Digital Stopwatch & Timer</h2>
+            <div class="modal-body">
+                <p>A modern, high-precision digital stopwatch and countdown timer web application featuring lap timing, custom inputs, glowing glassmorphic interface, and smooth user experience.</p>
+                <ul>
+                    <li><strong>Built with:</strong> HTML5, CSS3, Vanilla JavaScript</li>
+                    <li><strong>Features:</strong> Sub-millisecond timing accuracy, lap history recording, countdown notifications, light sky-blue theme.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="script.js"></script>
+
+</body>
+</html>
